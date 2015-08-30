@@ -3,8 +3,6 @@ from Document import Document
 class Searcher:
     def __init__(self, raw_documents):
         self.documents = [Document(raw_doc) for raw_doc in raw_documents]
-        #self.min_word_length = min_word_length
-        #self.stemmed_documents = [self._stem(doc.get_text()) for doc in self.documents]
     
     def search(self, query):
         results = []
