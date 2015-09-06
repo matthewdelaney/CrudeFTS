@@ -14,7 +14,6 @@ class Searcher:
             for qstem in query_stems:
                 if qstem in stemmed_document:
                     score += 1.0
-            score = score / doc.get_length()
             if score > 0.0:
                 results.append({"score": score, "text": doc.get_text()})
         return results
