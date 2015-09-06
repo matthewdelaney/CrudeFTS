@@ -13,7 +13,7 @@ class Searcher:
             stemmed_document = doc.get_stems()
             for qstem in query_stems:
                 if qstem in stemmed_document:
-                    score += 1.0
+                    score += len(qstem)
             if score > 0.0:
                 results.append({"score": score, "text": doc.get_text()})
         return results
