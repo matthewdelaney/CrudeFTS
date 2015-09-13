@@ -16,9 +16,12 @@ class Document:
             lc_word = word.lower()
             word_length = len(lc_word)
             if word_length >= self.min_word_length:
-                stems.append(lc_word[:word_length/2])
+                stem = lc_word[:word_length/2]
+                if stem not in stems:
+                    stems.append(lc_word[:word_length/2])
             else:
-                stems.append(lc_word)
+                if lc_word not in stems:
+                    stems.append(lc_word)
         return stems
 
     def get_text(self):
