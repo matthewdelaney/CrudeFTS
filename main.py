@@ -11,7 +11,7 @@ if __name__ == "__main__":
                          "The quick, brown fox jumped over the lazy hen"])
     documents = searcher.get_corpus().get_documents()
     for doc in documents:
-        print "%s\n" % doc.get_stems()
+        print "Document %d => %s\n" % (doc.get_id(), doc.get_stems())
     search_results = searcher.search("these")
     for idx, result in enumerate(search_results):
         print idx

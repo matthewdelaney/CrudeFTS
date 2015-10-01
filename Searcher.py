@@ -17,7 +17,7 @@ class Searcher:
                 if qstem in stemmed_document:
                     score += len(qstem)
             if score > 0.0:
-                results.append({"score": score, "text": doc.get_text()})
+                results.append({"id": doc.get_id(), "score": score, "text": doc.get_text()})
         return results
 
     def get_corpus(self):

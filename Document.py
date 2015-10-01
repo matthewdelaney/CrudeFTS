@@ -1,11 +1,20 @@
 import re
 
 class Document:
+    next_id = 0
+    
     def __init__(self, raw_document, min_word_length = 3):
         self.text = raw_document
         self.min_word_length = min_word_length
         self.length = len(raw_document)
         self.stems = self._stem(self.text)
+        self.id = Document.get_next_id()
+    
+    @staticmethod
+    def get_next_id():
+        next_id = Document.next_id
+        Document.next_id += 1
+        return next_id
     
     # Crude, pseudo-stemming algorithm to see what we can
     # get away with.
@@ -23,6 +32,9 @@ class Document:
                 if lc_word not in stems:
                     stems.append(lc_word)
         return stems
+
+    def get_id(self):
+        return self.id
 
     def get_text(self):
         return self.text
