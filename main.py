@@ -7,7 +7,7 @@ from Searcher import Searcher
 
 if __name__ == "__main__":
     searcher = Searcher(["This is a test", \
-                         "These are some longer words in a sentence", \
+                         "These are some longer words in a sentence and these are additional words", \
                          "The quick, brown fox jumped over the lazy hen"])
     documents = searcher.get_corpus().get_documents()
     for doc in documents:

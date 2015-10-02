@@ -26,11 +26,9 @@ class Document:
             word_length = len(lc_word)
             if word_length >= self.min_word_length:
                 stem = lc_word[:word_length/2]
-                if stem not in stems:
-                    stems.append(lc_word[:word_length/2])
+                stems.append(lc_word[:word_length/2])
             else:
-                if lc_word not in stems:
-                    stems.append(lc_word)
+                stems.append(lc_word)
         return stems
 
     def get_id(self):
