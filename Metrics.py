@@ -8,7 +8,10 @@ class Metrics:
         for document in documents:
             stems = document.get_stems()
             for stem in stems:
-                self.term_frequencies[document.get_id()] = TermFrequency(document, stem)
+                document_id = document.get_id()
+                if document_id not in self.term_frequencies.keys():
+                    self.term_frequencies[document_id] = dict()
+                self.term_frequencies[document_id][stem] = TermFrequency(document, stem)
 
     def get_term_frequency(self, document_id, term):
-        return self.term_frequencies[document_id].get_frequency()
+        return self.term_frequencies[document_id][term].get_frequency()
