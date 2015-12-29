@@ -2,8 +2,7 @@
 #qpy:2
 #qpy:console
 
-from Document import Document
-from Searcher import Searcher
+from CrudeFTS import Document, Searcher
 
 if __name__ == "__main__":
     searcher = Searcher(["This is a test", \
