@@ -57,11 +57,11 @@ class Metrics:
         self.term_frequencies = dict()
         documents = corpus.get_documents()
         for document in documents:
+            document_id = document.get_id()
+            if document_id not in self.term_frequencies.keys():
+                self.term_frequencies[document_id] = dict()
             stems = document.get_stems()
             for stem in stems:
-                document_id = document.get_id()
-                if document_id not in self.term_frequencies.keys():
-                    self.term_frequencies[document_id] = dict()
                 self.term_frequencies[document_id][stem] = TermFrequency(document, stem)
 
     def get_term_frequency(self, document_id, term):
