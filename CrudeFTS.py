@@ -1,4 +1,5 @@
 import re
+from collections import namedtuple
 
 class Corpus:
     def __init__(self, raw_documents):
@@ -33,8 +34,8 @@ class Document:
             lc_word = word.lower()
             word_length = len(lc_word)
             if word_length >= self.min_word_length:
-                stem = lc_word[:word_length/2]
-                stems.append(lc_word[:word_length/2])
+                stem = lc_word[:word_length//2]
+                stems.append(lc_word[:word_length//2])
             else:
                 stems.append(lc_word)
         return stems
@@ -70,6 +71,7 @@ class Metrics:
 
 class Searcher:
     def __init__(self, raw_documents):
+        self.result_tuple = namedtuple('result_tuple', 'id score text')
         self.corpus = Corpus(raw_documents)
         self.metrics = Metrics(self.corpus)
     
@@ -87,7 +89,8 @@ class Searcher:
                     term_frequency = self.metrics.get_term_frequency(document_id, qstem)
                     score += term_frequency
             if score > 0.0:
-                results.append({"id": doc.get_id(), "score": score, "text": doc.get_text()})
+                result = self.result_tuple(doc.get_id(), score, doc.get_text())
+                results.append(result)
         return results
 
     def get_corpus(self):
